@@ -12,13 +12,12 @@
   --primary-cyan: hsl(180, 62%, 55%);
   --primary-orange: hsl(34, 97%, 64%);
   --primary-blue: hsl(212, 86%, 64%);
-
-  --desktop-size: 1440px;
-  --mobile-size: 375px;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -45,9 +44,9 @@ p {
 }
 
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, minmax(239px, 1fr));
   margin: 0 auto;
   max-width: 1140px;
 }
@@ -72,24 +71,34 @@ p {
   left: 0;
 }
 
-.box-red::after {
-  background-color: var(--primary-red);
+.row:nth-child(odd) {
+  grid-row: span 2;
+}
+
+.row:first-child {
+  align-self: center;
+  justify-self: right;
+}
+
+.row:nth-child(3) {
+  align-self: center;
+  justify-self: left;
 }
 
 .box-cyan::after {
   background-color: var(--primary-cyan);
 }
 
-.box-orange::after {
-  background-color: var(--primary-orange);
+.box-red::after {
+  background-color: var(--primary-red);
 }
 
 .box-blue::after {
   background-color: var(--primary-blue);
 }
 
-.box-push {
-  transform: translateY(50%);
+.box-orange::after {
+  background-color: var(--primary-orange);
 }
 
 .box h2 {
@@ -108,11 +117,24 @@ p {
 
 footer {
   margin-top: 50px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
-@media (max-width: 795px) {
-  .box-push {
-    transform: translateY(0%);
+@media screen and (max-width: 1186px) {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    max-width: 390px;
   }
 }
