@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+@import url("https://fontbit.io/css2?family=Poppins:wght@200;400;600&display=swap");
 
 :root {
   font-family: Poppins, sans-serif;
-  font-size: 15px;
+  font-weight: 400;
+  font-size: 62.5%;
 
   --very-light-grey: hsl(0, 0%, 98%);
   --grayish-blue: hsl(229, 6%, 66%);
@@ -12,51 +13,71 @@
   --primary-cyan: hsl(180, 62%, 55%);
   --primary-orange: hsl(34, 97%, 64%);
   --primary-blue: hsl(212, 86%, 64%);
-
-  --desktop-size: 1440px;
-  --mobile-size: 375px;
 }
 
-* {
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: none;
   box-sizing: border-box;
+}
+
+img,
+picture {
+  display: block;
 }
 
 body {
   background-color: var(--very-light-grey);
+  color: var(--grayish-blue);
+  line-height: 1.5;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-header {
-  margin: 50px auto;
-  max-width: 500px;
+.header {
+  margin-top: 6.4rem;
+  margin-bottom: 4.8rem;
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+  width: min(100%, 50rem);
   text-align: center;
 }
 
-h1 {
+.header h1 {
   font-weight: 200;
-  margin: 0;
+  font-size: 3.2rem;
+  color: var(--very-dark-blue);
+  margin-bottom: 2.4rem;
 }
 
-h1 span {
+.header h1 span {
+  display: block;
   font-weight: 600;
 }
 
-p {
-  color: var(--grayish-blue);
+.header p {
+  font-size: 1.5rem;
 }
 
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 1140px;
+  width: min(100%, 114rem);
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.2rem;
 }
 
 .box {
-  background-color: #fff;
-  padding: 30px;
-  margin: 15px;
-  width: 350px;
+  background-color: var(--very-light-grey);
+  padding: 3.2rem;
+  margin: 1.6rem;
+  width: min(100%, 32rem);
   position: relative;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
@@ -66,10 +87,22 @@ p {
 .box::after {
   content: '';
   width: 100%;
-  height: 5px;
+  height: 0.5rem;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.box-cyan {
+  grid-column: 1;
+  grid-row: span 2;
+  place-self: center;
+}
+
+.box-blue {
+  grid-column: 3;
+  grid-row: span 2;
+  place-self: center;
 }
 
 .box-red::after {
@@ -88,17 +121,16 @@ p {
   background-color: var(--primary-blue);
 }
 
-.box-push {
-  transform: translateY(50%);
-}
-
 .box h2 {
-  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--very-dark-blue);
+  margin-bottom: 1.6rem;
 }
 
 .box p {
-  font-size: 0.8rem;
-  margin: 15px 0 30px;
+  font-size: 1.2rem;
+  margin-bottom: 4.8rem;
 }
 
 .box img {
@@ -107,12 +139,61 @@ p {
 }
 
 footer {
-  margin-top: 50px;
+  margin-top: 6.4rem;
+  padding-top: 4.8rem;
+  padding-bottom: 4.8rem;
   text-align: center;
 }
 
-@media (max-width: 795px) {
-  .box-push {
-    transform: translateY(0%);
+@media (max-width: 67.875em) {
+  .container {
+    width: min(100%, 72rem);
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  .box-cyan {
+    grid-column: 1;
+    grid-row: 1;
+    place-self: initial;
+  }
+
+  .box-blue {
+    grid-column: 2;
+    grid-row: 2;
+    place-self: initial;
+  }
+}
+
+@media (max-width: 45em) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .box-cyan {
+    grid-column: initial;
+    grid-row: initial;
+  }
+
+  .box-blue {
+    grid-column: initial;
+    grid-row: initial;
+  }
+}
+
+@media (max-width: 27.31em) {
+  .header h1 {
+    font-size: 2.4rem;
+  }
+
+  .header p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 23.43em) {
+  :root {
+    font-size: 50%;
   }
 }
